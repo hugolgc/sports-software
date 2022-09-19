@@ -21,5 +21,5 @@ export const PLAYERS: Player[] = [
     firstName: 'Twix',
     lastName: 'Le Teckel',
     bornDate: '2022-05-14'
-  },
+  }
 ];

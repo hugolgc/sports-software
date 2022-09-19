@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
 import { useHallService } from '../services/hallService';
 
-const search = ref('');
 const hallService = useHallService();
-
-const hallsFilterBySearch = computed(() => hallService.halls.filter(hall =>
-  hall.name.toLowerCase().includes(search.value.toLowerCase()) ||
-  hall.address.toLowerCase().includes(search.value.toLowerCase())
-));
 
 hallService.getAll();
 </script>
@@ -16,20 +9,11 @@ hallService.getAll();
 <template>
   <div class="flex justify-between items-center pb-16">
     <h1 class="text-[48px] font-semibold">Salles</h1>
-    <label htmlFor="search">
-      <span class="sr-only">Chercher une salle</span>
-      <input
-        v-model="search"
-        id="search"
-        type="text"
-        placeholder="Chercher par nom, adresse"
-        class="w-72 px-4 py-3 bg-transparent border-2 border-neutral-800 rounded-[8px] placeholder:text-neutral-500 tracking-wide"
-      />
-    </label>
+    <button class="px-4 py-3 bg-neutral-800 border-2 border-neutral-800 rounded-[8px] tracking-wide">Ajouter une salle</button>
   </div>
   <ul class="grid grid-cols-3 gap-8">
     <li
-      v-for="hall in hallsFilterBySearch"
+      v-for="hall in hallService.halls"
       class="bg-neutral-800 rounded-[8px] overflow-hidden"
     >
       <figure>

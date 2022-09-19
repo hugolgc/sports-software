@@ -12,9 +12,9 @@ const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
 </script>
 
 <template>
-  <div class="flex justify-between items-center pb-16">
+  <div class="flex items-center pb-16">
     <h1 class="text-[48px] font-semibold">Joueurs</h1>
-    <label htmlFor="search">
+    <label htmlFor="search" class="block ml-auto mr-4">
       <span class="sr-only">Chercher un joueur</span>
       <input
         v-model="search"
@@ -24,6 +24,7 @@ const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
         class="w-72 px-4 py-3 bg-transparent border-2 border-neutral-800 rounded-[8px] placeholder:text-neutral-500 tracking-wide"
       />
     </label>
+    <button class="px-4 py-3 bg-neutral-800 border-2 border-neutral-800 rounded-[8px] tracking-wide">Ajouter un joueur</button>
   </div>
   <table class="w-full table-auto divide-y-2 divide-neutral-800">
     <thead>
@@ -32,7 +33,7 @@ const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
         <th class="px-4 pb-3 font-normal">Nom</th>
         <th class="px-4 pb-3 font-normal">Club</th>
         <th class="px-4 pb-3 font-normal">Tableaux</th>
-        <th class="pl-4 pb-3 font-normal">État</th>
+        <th class="pl-4 pb-3 font-normal">Pointage</th>
       </tr>
     </thead>
     <tbody class="divide-y-2 divide-neutral-800">
@@ -41,7 +42,7 @@ const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
         <td class="px-4 py-3">{{ player.firstName }} {{ player.lastName }}</td>
         <td class="px-4 py-3">Bad. Wambrechie Marquette</td>
         <td class="px-4 py-3">SH R6 - DH D7</td>
-        <td class="pl-4 py-3">Présent</td>
+        <td class="pl-4 py-3 text-red-500 font-mono tracking-normal">Absent</td>
       </tr>
     </tbody>
   </table>

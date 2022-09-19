@@ -1,9 +1,9 @@
-import { defineStore as defineService } from 'pinia';
+import { defineStore as useService } from 'pinia';
 import { ref } from 'vue';
 import { HALLS } from '../mocks/halls';
 import type { Hall } from '../interfaces/hall';
 
-export const useHallService = defineService('hall', () => {
+export const useHallService = useService('hall', () => {
   const halls = ref<Hall[]>([]);
 
   function getAll(): void {
