@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHallService } from '../services/hallService';
+import { useHallService } from '../services/hall.service';
 
 const hallService = useHallService();
 

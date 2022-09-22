@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { PLAYERS } from '../mocks/players';
 
 const search = ref('');
+type Player = { license: string, firstName: string, lastName: string };
+const PLAYERS = [] as Player[];
 
 const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
   player.license.toLowerCase().includes(search.value.toLowerCase()) ||

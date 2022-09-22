@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { useCategoryService } from '../services/categoryService';
-import { useLevelService } from '../services/levelService';
+import { useDrawService } from '../services/draw.service';
+import { drawHelper } from '../helpers/draw.helper';
 
-const categoryService = useCategoryService();
-const levelService = useLevelService();
+const drawService = useDrawService();
+const drawsGroupByDisciplineSortByLevel = computed(() =>
+  drawHelper.groupByDisciplineSortByLevel(drawService.draws)
+);
 
-categoryService.getAll();
-levelService.getAll();
+drawService.getAll();
 </script>
 
 <template>
@@ -17,20 +19,20 @@ levelService.getAll();
   </div>
   <ul class="flex space-x-8">
     <li
-      v-for="category in categoryService.categories"
+      v-for="draws in drawsGroupByDisciplineSortByLevel"
       class="flex-1 space-y-2"
     >
-      <h2 class="px-4 text-neutral-500">{{ category.name }}</h2>
+      <h2 class="px-4 text-neutral-500">{{ draws[0].discipline.name }}</h2>
       <ul class="space-y-2">
         <li
-          v-for="level in levelService.levels"
+          v-for="draw in draws"
           class="px-4 py-3 bg-neutral-800 rounded-[8px] font-mono"
         >
           <RouterLink
-            :to="{ name: 'DrawsShow', params: { drawId: 1 }}"
+            :to="{ name: 'DrawsShow', params: { drawId: draw.id }}"
             class="flex justify-between"
           >
-            <span>{{ level.sign }}</span>
+            <span>{{ draw.levels.map(({ levels_id }) => levels_id.sign).join(' ') }}</span>
             <span class="text-green-500">24</span>
           </RouterLink>
         </li>
