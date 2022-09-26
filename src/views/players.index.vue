@@ -15,7 +15,7 @@ const playersFilterBySearch = computed(() => PLAYERS.filter(player =>
 <template>
   <div class="flex items-center pb-16">
     <h1 class="text-[48px] font-semibold">Joueurs</h1>
-    <label htmlFor="search" class="block ml-auto mr-4">
+    <label for="search" class="block ml-auto mr-4">
       <span class="sr-only">Chercher un joueur</span>
       <input
         v-model="search"

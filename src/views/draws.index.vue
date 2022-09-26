@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { useDrawService } from '../services/draw.service';
 import { drawHelper } from '../helpers/draw.helper';
@@ -24,13 +24,10 @@ drawService.getAll();
     >
       <h2 class="px-4 text-neutral-500">{{ draws[0].discipline.name }}</h2>
       <ul class="space-y-2">
-        <li
-          v-for="draw in draws"
-          class="px-4 py-3 bg-neutral-800 rounded-[8px] font-mono"
-        >
+        <li v-for="draw in draws">
           <RouterLink
             :to="{ name: 'DrawsShow', params: { drawId: draw.id }}"
-            class="flex justify-between"
+            class="flex justify-between px-4 py-3 bg-neutral-800 rounded-[8px] font-mono"
           >
             <span>{{ draw.levels.map(({ levels_id }) => levels_id.sign).join(' ') }}</span>
             <span class="text-green-500">24</span>
